@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GlowCare Skincare</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">GlowCare</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cart.html">Cart 🛒</a></li>
+        <li><a href="login.html">Login</a></li>
+        <li><a href="Register.html">Register</a></li>
+        <li><a href="admin.html">Admin</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="logout()">Log Out</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Glow With Confidence</h1>
+      <a href="#products" class="btn">Shop Now</a>
+    </div>
+  </section>
+
+  <section id="products">
+    <h2>Our Skincare Products</h2>
+    <div class="product-grid" id="product-list">
+      <!-- JS will insert products here -->
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 GlowCare. All rights reserved | Privacy Policy | Terms of Services
+  </footer>
+
+  <script src="product.js"></script>
+  <script src="script.js"></script>
+  <button onclick="logout()">Logout</button>
+<script>
+  function logout() {
+    firebase.auth().signOut().then(() => {
+      alert("Logged out!");
+      window.location.href = "login.html";
+    });
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+:root {
+  --primary: #1976D2;  /* royal blue */
+  --accent: #90CAF9;   /* powder blue */
+  --bg: #E1F5FE;       /* frost blue */
+  --gray: #0D47A1;     /* navy for text */
+  --hover: #42A5F5;    /* sky blue */
+}
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg);
+  color: var(--gray);
+}
+
+header {
+  background: white;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--gray);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--hover);
+}
+
+.hero {
+  background: url('images/hero.jpg') no-repeat center/cover;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  background: rgba(0,0,0,0.4);
+  top: 0; bottom: 0; left: 0; right: 0;
+}
+
+.hero-text {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+.hero h1 {
+  font-size: 3.5rem;
+  margin-bottom: 0.5em;
+}
+
+.btn {
+  padding: 12px 25px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: var(--hover);
+}
+
+section {
+  padding: 60px 30px;
+}
+
+h2 {
+  text-align: center;
+  color: var(--primary);
+  margin-bottom: 30px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+}
+
+.product-card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+}
+
+.product-card img {
+  max-width: 100%;
+  border-radius: 8px;
+  height: 220px;
+  object-fit: cover;
+}
+
+footer {
+  background: var(--accent);
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9rem;
+  color: var(--gray);
+}

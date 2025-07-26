@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Register - GlowCare</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="margin:0; height:100vh; display:flex; justify-content:center; align-items:center; background: linear-gradient(to right, #E3F2FD, #BBDEFB); font-family:sans-serif;">
+
+  <div style="text-align:center; padding:40px; background:white; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.1);">
+    <h1 style="margin-bottom: 20px;">Register</h1>
+    <form id="register-form">
+      <input type="email" id="reg-email" placeholder="Email" required style="padding:10px; width:250px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;"><br>
+      <input type="password" id="reg-password" placeholder="Password" required style="padding:10px; width:250px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc;"><br>
+      <button type="submit" style="padding:10px 20px; background-color:#1976D2; color:white; border:none; border-radius:5px; cursor:pointer;">Register</button>
+    </form>
+    <p id="register-message"></p>
+  </div>
+
+</body>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAurhzsz_sQspLxx4J9fg-QVNgqJumJcaw",
+      authDomain: "glowcare-23.firebaseapp.com",
+      projectId: "glowcare-23",
+      storageBucket: "glowcare-23.firebasestorage.app",
+      messagingSenderId: "872816946760",
+      appId: "1:872816946760:web:0ed98a8e56045e7131b27d",
+      measurementId: "G-J5YP5CQT7M"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const form = document.getElementById("register-form");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("reg-email").value;
+      const password = document.getElementById("reg-password").value;
+
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then(user => {
+          document.getElementById("reg-message").innerText = "✅ Registration successful!";
+          form.reset();
+        })
+        .catch(error => {
+          document.getElementById("reg-message").innerText = error.message;
+        });
+    });
+  </script>
+</body>
+</html>

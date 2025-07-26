@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product Details - GlowCare</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">GlowCare</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cart.html">Cart 🛒</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="product-detail" style="max-width: 1000px; margin: auto;">
+    <!-- Product info will be injected here -->
+  </section>
+
+  <footer>
+    &copy; 2025 GlowCare. All rights reserved.
+  </footer>
+
+  <script src="product.js"></script>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = parseInt(urlParams.get('id'));
+    const product = products.find(p => p.id === id);
+
+    const container = document.getElementById('product-detail');
+
+    if (!product) {
+      container.innerHTML = "<p>Product not found!</p>";
+    } else {
+      container.innerHTML = `
+        <div style="display:flex; flex-wrap:wrap; gap:30px; align-items:center; padding: 50px;">
+          <div style="flex:1;">
+            <img src="${product.image}" alt="${product.name}" style="width:100%; max-width:400px; border-radius:10px;" />
+          </div>
+          <div style="flex:2;">
+            <h2 style="color:var(--primary); font-size:2rem;">${product.name}</h2>
+            <p style="font-size:1.1rem;">Price: <strong>₹${product.price}</strong></p>
+            <p style="margin: 20px 0; line-height:1.6;">
+              This is a premium skincare product carefully formulated for all skin types. Apply regularly for glowing, healthy skin.
+            </p>
+            <button onclick="addToCart(${product.id})" class="btn">Add to Cart</button>
+          </div>
+        </div>
+      `;
+    }
+
+    function addToCart(id) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const product = products.find(p => p.id === id);
+      const existing = cart.find(p => p.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...product, qty: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${product.name} added to cart!`);
+    }
+  </script>
+</body>
+</html>

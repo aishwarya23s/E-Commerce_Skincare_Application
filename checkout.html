@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout - GlowCare</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div class="logo">GlowCare</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="cart.html">Cart</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section style="max-width: 800px; margin: auto; padding: 20px;">
+    <h2>Checkout</h2>
+    
+    <h3>Order Summary</h3>
+    <div id="order-summary"></div>
+
+    <h3 style="margin-top:30px;">Billing Information</h3>
+    <form id="checkout-form">
+      <label>Name:</label><br/>
+      <input type="text" required><br><br>
+
+      <label>Email:</label><br/>
+      <input type="email" required><br><br>
+
+      <label>Address:</label><br/>
+      <textarea required></textarea><br><br>
+
+      <label>Payment Method:</label><br/>
+      <select required>
+        <option value="">Select</option>
+        <option value="cod">Cash on Delivery</option>
+        <option value="card">Credit/Debit Card</option>
+        <option value="upi">UPI</option>
+      </select><br><br>
+
+      <button type="submit" class="btn">Place Order</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 GlowCare. All rights reserved.
+  </footer>
+
+  <script>
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const summaryDiv = document.getElementById('order-summary');
+
+    if (cart.length === 0) {
+      summaryDiv.innerHTML = '<p>Your cart is empty.</p>';
+      document.getElementById('checkout-form').style.display = 'none';
+    } else {
+      let html = '<ul>';
+      let total = 0;
+      cart.forEach(item => {
+        const subtotal = item.qty * item.price;
+        total += subtotal;
+        html += `<li>${item.name} (x${item.qty}) - ₹${subtotal}</li>`;
+      });
+      html += `</ul><p><strong>Total: ₹${total}</strong></p>`;
+      summaryDiv.innerHTML = html;
+    }
+
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert("🎉 Order placed successfully! Thank you for shopping with GlowCare.");
+      localStorage.removeItem('cart');
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>

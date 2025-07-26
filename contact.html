@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact - GlowCare</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="logo">GlowCare</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
+ <section style="max-width: 500px; margin: auto; padding: 30px;">
+    <h2>Contact Us</h2>
+    <form onsubmit="submitContactForm(event)">
+      <label>Name:</label><br>
+      <input type="text" required><br><br>
+
+      <label>Email:</label><br>
+      <input type="email" required><br><br>
+
+      <label>Message:</label><br>
+      <textarea rows="5" required></textarea><br><br>
+
+      <button class="btn">Send Message</button>
+    </form>
+    <p id="contact-message" style="color: green;"></p>
+  </section>
+
+
+  <footer>
+    &copy; 2025 GlowCare. All rights reserved | Privacy Policy | Terms of Service
+  </footer>
+
+  <script>
+    function submitContactForm(event) {
+      event.preventDefault();
+      document.getElementById("contact-message").innerText = "✅ Message sent successfully!";
+    }
+  </script>
+</body>
+</html>

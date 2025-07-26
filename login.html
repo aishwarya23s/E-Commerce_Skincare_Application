@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login - GlowCare</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body style="margin:0; height:100vh; display:flex; justify-content:center; align-items:center; background: linear-gradient(to right, #E3F2FD, #BBDEFB); font-family:sans-serif;">
+
+  <div style="text-align:center; padding:40px; background:white; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.1);">
+    <h1 style="margin-bottom: 20px;">Login</h1>
+    <form id="login-form">
+      <input type="email" id="login-email" placeholder="Email" required style="padding:10px; width:250px; margin-bottom:10px; border-radius:5px; border:1px solid #ccc;"><br>
+      <input type="password" id="login-password" placeholder="Password" required style="padding:10px; width:250px; margin-bottom:15px; border-radius:5px; border:1px solid #ccc;"><br>
+      <button type="submit" style="padding:10px 20px; background-color:#1976D2; color:white; border:none; border-radius:5px; cursor:pointer;">Login</button>
+    </form>
+    <p id="login-message"></p>
+  </div>
+
+</body>
+  
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyAurhzsz_sQspLxx4J9fg-QVNgqJumJcaw",
+      authDomain: "glowcare-23.firebaseapp.com",
+      projectId: "glowcare-23",
+      storageBucket: "glowcare-23.firebasestorage.app",
+      messagingSenderId: "872816946760",
+      appId: "1:872816946760:web:0ed98a8e56045e7131b27d",
+      measurementId: "G-J5YP5CQT7M"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const loginForm = document.getElementById("login-form");
+    loginForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then(user => {
+          document.getElementById("login-message").innerText = "✅ Login successful!";
+          window.location.href = "index.html"; // or redirect to dashboard
+        })
+        .catch(error => {
+          document.getElementById("login-message").innerText = error.message;
+        });
+    });
+  </script>
+</body>
+</html>
